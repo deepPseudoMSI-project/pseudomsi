@@ -20,9 +20,9 @@
   <url>
     <loc>https://academic-demo.netlify.app/courses/example/</loc><lastmod>2021-01-24T00:00:00+00:00</lastmod></url>
   <url>
-    <loc>https://academic-demo.netlify.app/tag/academic/</loc><lastmod>2020-12-13T00:00:00+00:00</lastmod></url>
+    <loc>https://academic-demo.netlify.app/author/</loc><lastmod>2020-12-13T00:00:00+00:00</lastmod></url>
   <url>
-    <loc>https://academic-demo.netlify.app/author/alice-bighetti-%E5%90%B3%E6%81%A9%E9%81%94/</loc><lastmod>2020-12-13T00:00:00+00:00</lastmod></url>
+    <loc>https://academic-demo.netlify.app/tag/academic/</loc><lastmod>2020-12-13T00:00:00+00:00</lastmod></url>
   <url>
     <loc>https://academic-demo.netlify.app/authors/</loc><lastmod>2020-12-13T00:00:00+00:00</lastmod></url>
   <url>
@@ -90,4 +90,10 @@
   <url>
     <loc>https://academic-demo.netlify.app/publication/conference-paper/</loc><lastmod>2013-07-01T00:00:00+00:00</lastmod></url>
   <url>
-    <loc>https://academic-demo.netlify.app/admin/</loc></url></urlset>
+    <loc>https://academic-demo.netlify.app/admin/</loc></url>
+  <url>
+    <loc>https://academic-demo.netlify.app/author/chuchu-wang/</loc></url>
+  <url>
+    <loc>https://academic-demo.netlify.app/author/wei-shao/</loc></url>
+  <url>
+    <loc>https://academic-demo.netlify.app/author/xiaotao-shen/</loc></url></urlset>

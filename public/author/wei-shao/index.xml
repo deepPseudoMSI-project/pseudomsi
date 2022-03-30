@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wei Shao | DeepPseudoMSI</title>
+    <link>https://academic-demo.netlify.app/author/wei-shao/</link>
+      <atom:link href="https://academic-demo.netlify.app/author/wei-shao/index.xml" rel="self" type="application/rss+xml" />
+    <description>Wei Shao</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language>
+    <image>
+      <url>https://academic-demo.netlify.app/author/wei-shao/avatar_hu04516df682871f3124bf92a18ba9a5c8_12024_270x270_fill_q75_lanczos_center.jpg</url>
+      <title>Wei Shao</title>
+      <link>https://academic-demo.netlify.app/author/wei-shao/</link>
+    </image>
+    
+  </channel>
+</rss>

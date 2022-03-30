@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xiaotao Shen | DeepPseudoMSI</title>
+    <link>https://academic-demo.netlify.app/author/xiaotao-shen/</link>
+      <atom:link href="https://academic-demo.netlify.app/author/xiaotao-shen/index.xml" rel="self" type="application/rss+xml" />
+    <description>Xiaotao Shen</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language>
+    <image>
+      <url>https://academic-demo.netlify.app/author/xiaotao-shen/avatar_hud5609ee1de730d4a9f6029e2873a93fe_20711_270x270_fill_q75_lanczos_center.jpg</url>
+      <title>Xiaotao Shen</title>
+      <link>https://academic-demo.netlify.app/author/xiaotao-shen/</link>
+    </image>
+    
+  </channel>
+</rss>
