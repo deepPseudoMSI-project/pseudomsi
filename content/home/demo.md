@@ -28,7 +28,7 @@ design:
     padding: ["20px", "0", "20px", "0"]
 ---
 
-The `deepPseudoMSI` project is first method that convert LC-MS raw data to "images" and then process them using deep learning method for diagnosis. It contains two parts.
+The `deepPseudoMSI` project is the first method that convert LC-MS raw data to "images" and then process them using deep learning method for diagnosis. It contains two parts.
 
 **1. Pseudo-MS image converter**
 

@@ -10,7 +10,6 @@ cta:
   url: https://github.com/jaspershen/deepPseudoMSI
 cta_note:
   label: >- 
-    <a class="js-github-release" ></a><div style="text-shadow: none;"></div><div style="text-shadow: none;"></div>
     <a class="github-button" href="https://www.tidymass.org/" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star">The deepPseudoMSI project is the first method that convert LC-MS raw data to "images" and then process them using deep learning method for diagnosis.</a></div><div style="text-shadow: none;">
 design:
   background:
