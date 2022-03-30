@@ -8,9 +8,9 @@ hero_media: deeppseudomsi_fig1.png
 cta:
   label: '**Source code </>**'
   url: https://github.com/jaspershen/deepPseudoMSI
-cta_note:
-  label: >- 
-    <a class="github-button" href="https://www.tidymass.org/" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star">The deepPseudoMSI project is the first method that convert LC-MS raw data to "images" and then process them using deep learning method for diagnosis.</a></div><div style="text-shadow: none;">
+cta_alt:
+  label: 'Ask a question'
+  url: https://github.com/jaspershen/deepPseudoMSI/issues
 design:
   background:
     gradient_end: 'white'
@@ -21,6 +21,6 @@ design:
 #   css_class: fullscreen
 ---
 
-****
+The deepPseudoMSI project is the first method that convert LC-MS raw data to "images" and then process them using deep learning method for diagnosis.
 
 
