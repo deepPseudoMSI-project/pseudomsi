@@ -1,0 +1,38 @@
+---
+title: "Case study"
+headless: yes
+active: yes
+weight: 30
+widget: blank
+subtitle: 
+design:
+  columns: '1'
+---
+
+## **Introduction**
+
+The case study dataset from the our previous published study to predict the gestational age (GA, week) of pregnant women (Liang et al, Cell, 2020). This study aims to predict the GA of pregnant women, so we could provide a non-invasive method for pregnancy dating. 
+
+<img src="cell_paper.png" alt="logo" width="50%" height="50%">
+
+## **Down the demo data**
+
+### **mzXML data**
+
+The LC-MS data (mzXML format) were deposited to the NIH Common Fund’s National Metabolomics Data Repository (NMDR) website, the Metabolomics Workbench, the project ID is [PR000918](https://doi.org/10.21228/M81H58) (https://doi.org/10.21228/M81H58).
+
+### **Metabolic feature table**
+
+1. [Normal dataset]()
+
+2. [RT shift dataset]()
+
+### **Pseudo-MS image datasets**
+
+1. [Normal dataset]()
+
+2. [RT shift dataset]()
+
+## **DeepPseduoMSI prediction result**
+
+<img src="Figure_2_new.png" alt="logo" width="100%" height="100%">
