@@ -11,11 +11,11 @@ design:
 
 ## **Introduction**
 
-The case study dataset from the our previous published study to predict the gestational age (GA, week) of pregnant women (Liang et al, Cell, 2020). This study aims to predict the GA of pregnant women, so we could provide a non-invasive method for pregnancy dating. 
+The case study dataset from the our previous published study to predict the gestational age (GA, week) of pregnant women ([Liang et al, Cell, 2020](https://pubmed.ncbi.nlm.nih.gov/32589958/)). This study aims to predict the GA of pregnant women, so we could provide a non-invasive method for pregnancy dating. 
 
 [Paper link is here](https://pubmed.ncbi.nlm.nih.gov/32589958/)
 
-<img src="cell_paper.png" alt="logo" width="50%" height="50%">
+<img src="cell_paper.png" alt="logo" width="100%" height="100%">
 
 ## **Down the demo data**
 
