@@ -5,9 +5,6 @@
 
 main:
   - name: About
-    url: '#hero'
-    weight: 10
-  - name: Algorithm
     url: '#demo'
     weight: 20
   - name: Case study
