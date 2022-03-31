@@ -47,13 +47,7 @@ social:
   link: '#contact'
 - icon: linkedin
   icon_pack: fab
-  link: https://www.linkedin.com/in/shenxt/
-- icon: github
-  icon_pack: fab
-  link: https://github.com/jaspershen
-- icon: home
-  icon_pack: fas
-  link: https://shenxt.info
+  link: https://www.linkedin.com/in/chuchu-wang-71331190/
 
 # Link to a PDF of your resume/CV.
 # To use: copy your resume to `static/uploads/resume.pdf`, enable `ai` icons in `params.toml`, 

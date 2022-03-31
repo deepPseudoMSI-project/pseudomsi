@@ -8,7 +8,7 @@ user_groups:
 - team
 
 # Role/position/tagline
-role: Assisstant Professor
+role: Assistant Professor
 
 # Organizations/Affiliations to show in About widget
 organizations:
@@ -47,13 +47,7 @@ social:
   link: '#contact'
 - icon: linkedin
   icon_pack: fab
-  link: https://www.linkedin.com/in/shenxt/
-- icon: github
-  icon_pack: fab
-  link: https://github.com/jaspershen
-- icon: home
-  icon_pack: fas
-  link: https://shenxt.info
+  link: https://www.linkedin.com/in/wei-shao-438782115/
 
 # Link to a PDF of your resume/CV.
 # To use: copy your resume to `static/uploads/resume.pdf`, enable `ai` icons in `params.toml`, 

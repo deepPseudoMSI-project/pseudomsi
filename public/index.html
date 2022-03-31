@@ -943,6 +943,8 @@
     <p>The <code>deepPseudoMSI</code> project is the first method that convert LC-MS raw data to &ldquo;images&rdquo; and then process them using deep learning method for diagnosis. It contains two parts.</p>
 <p><strong>1. Pseudo-MS image converter</strong></p>
 <hr>
+<p>One LC-MS raw data usually contains millions of data points, so we need to divide it into different pixels (or grids) based on the revolution in the x-axis (RT) and y-axis (m/z) to reduce the size. All the data points in the same pixel are combined to represent the intensity of this pixel.  The intensity of each pixel is linearly transformed to the color of the pixel (grey degree). Finally, one LC-MS raw data with millions of data points is converted into an image with thousands of pixels based on the resolution (for example, 224 × 224), we call it the pseudo-MS image, which contains all the information from the LC-MS raw data.</p>
+<p><a href="https://github.com/jaspershen/deepPseudoMSI/tree/main/code/pseudoMS-image-converter" target="_blank" rel="noopener">Code is here</a></p>
 <img src="converter.png" alt="logo" width="100%" height="100%">
 <p><strong>2. Image predictor</strong></p>
 <hr>
@@ -1036,11 +1038,13 @@
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
+<hr />
 <div id="introduction" class="section level2">
 <h2><strong>Introduction</strong></h2>
-<p>The case study dataset from the our previous published study to predict the gestational age (GA, week) of pregnant women (<a href="https://pubmed.ncbi.nlm.nih.gov/32589958/">Liang et al, Cell, 2020</a>). This study aims to predict the GA of pregnant women, so we could provide a non-invasive method for pregnancy dating.</p>
+<p>The case study dataset (RPLC, positive mode) from our previous published study to predict the gestational age (GA, week) of pregnant women (<a href="https://pubmed.ncbi.nlm.nih.gov/32589958/">Liang et al, Cell, 2020</a>). This study aims to predict the GA of pregnant women, so we could provide a non-invasive method for pregnancy dating.</p>
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/32589958/">Paper link is here</a></p>
 <p><img src="cell_paper.png" alt="logo" width="100%" height="100%"></p>
+<hr />
 </div>
 <div id="download-the-demo-data" class="section level2">
 <h2><strong>Download the demo data</strong></h2>
@@ -1060,8 +1064,11 @@
 <ol style="list-style-type: decimal">
 <li><a href="https://drive.google.com/file/d/10_0DXWGtCoRwtkPmtpsiERNfzeySbuzk/view?usp=sharing">Normal dataset and RT shift dataset</a></li>
 </ol>
+<p>Download the data and then uncompress it.</p>
 <p><img src="fig1.png" alt="fig1" width="100%" height="100%"></p>
+<p><code>rplc_pos_224-224_raw</code> is the normal dataset (pseudo-MS images), and <code>rplc_pos_224-224_mz_rt_int_shift_x</code> are the augmented datasets by shift m/z, RT and intensity.</p>
 <p><img src="fig2.png" alt="fig2" width="100%" height="100%"></p>
+<hr />
 </div>
 </div>
 <div id="deeppseduomsi-prediction-result" class="section level2">
@@ -1216,42 +1223,8 @@
       
     
     <li>
-      <a href="https://www.linkedin.com/in/shenxt/" target="_blank" rel="noopener">
+      <a href="https://www.linkedin.com/in/chuchu-wang-71331190/" target="_blank" rel="noopener">
         <i class="fab fa-linkedin"></i>
-      </a>
-    </li>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="https://github.com/jaspershen" target="_blank" rel="noopener">
-        <i class="fab fa-github"></i>
-      </a>
-    </li>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="https://shenxt.info" target="_blank" rel="noopener">
-        <i class="fas fa-home"></i>
       </a>
     </li>
   
@@ -1281,7 +1254,7 @@
     <div class="portrait-title">
       <h2><a href="/author/wei-shao/">Wei Shao</a></h2>
       
-      <h3>Assisstant Professor</h3>
+      <h3>Assistant Professor</h3>
       <ul class="network-icon" aria-hidden="true">
   
     
@@ -1313,42 +1286,8 @@
       
     
     <li>
-      <a href="https://www.linkedin.com/in/shenxt/" target="_blank" rel="noopener">
+      <a href="https://www.linkedin.com/in/wei-shao-438782115/" target="_blank" rel="noopener">
         <i class="fab fa-linkedin"></i>
-      </a>
-    </li>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="https://github.com/jaspershen" target="_blank" rel="noopener">
-        <i class="fab fa-github"></i>
-      </a>
-    </li>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="https://shenxt.info" target="_blank" rel="noopener">
-        <i class="fas fa-home"></i>
       </a>
     </li>
   
@@ -1521,10 +1460,10 @@
     <div class="container">
 
     
-      <div class="row  ">
+      <div class="row  justify-content-center">
       
         
-          <div class="section-heading col-12 col-lg-4 mb-3 mb-lg-0 d-flex flex-column align-items-center align-items-lg-start">
+          <div class="section-heading col-12 mb-3 text-center">
             <h1 class="mb-0">Contact</h1>
             
           </div>
@@ -1551,7 +1490,7 @@
 
 
 
-<div class="col-12 col-lg-8">
+<div class="col-12 ">
   
 
   
@@ -1699,7 +1638,7 @@
       
       
       
-      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+      Support by <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a>.
     
   </p>
 </footer>

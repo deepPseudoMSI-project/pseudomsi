@@ -12,11 +12,13 @@ design:
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
+<hr />
 <div id="introduction" class="section level2">
 <h2><strong>Introduction</strong></h2>
-<p>The case study dataset from the our previous published study to predict the gestational age (GA, week) of pregnant women (<a href="https://pubmed.ncbi.nlm.nih.gov/32589958/">Liang et al, Cell, 2020</a>). This study aims to predict the GA of pregnant women, so we could provide a non-invasive method for pregnancy dating.</p>
+<p>The case study dataset (RPLC, positive mode) from our previous published study to predict the gestational age (GA, week) of pregnant women (<a href="https://pubmed.ncbi.nlm.nih.gov/32589958/">Liang et al, Cell, 2020</a>). This study aims to predict the GA of pregnant women, so we could provide a non-invasive method for pregnancy dating.</p>
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/32589958/">Paper link is here</a></p>
 <p><img src="cell_paper.png" alt="logo" width="100%" height="100%"></p>
+<hr />
 </div>
 <div id="download-the-demo-data" class="section level2">
 <h2><strong>Download the demo data</strong></h2>
@@ -36,8 +38,11 @@ design:
 <ol style="list-style-type: decimal">
 <li><a href="https://drive.google.com/file/d/10_0DXWGtCoRwtkPmtpsiERNfzeySbuzk/view?usp=sharing">Normal dataset and RT shift dataset</a></li>
 </ol>
+<p>Download the data and then uncompress it.</p>
 <p><img src="fig1.png" alt="fig1" width="100%" height="100%"></p>
+<p><code>rplc_pos_224-224_raw</code> is the normal dataset (pseudo-MS images), and <code>rplc_pos_224-224_mz_rt_int_shift_x</code> are the augmented datasets by shift m/z, RT and intensity.</p>
 <p><img src="fig2.png" alt="fig2" width="100%" height="100%"></p>
+<hr />
 </div>
 </div>
 <div id="deeppseduomsi-prediction-result" class="section level2">

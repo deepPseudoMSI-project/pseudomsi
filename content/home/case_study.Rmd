@@ -9,13 +9,17 @@ design:
   columns: '1'
 ---
 
+---
+
 ## **Introduction**
 
-The case study dataset from the our previous published study to predict the gestational age (GA, week) of pregnant women ([Liang et al, Cell, 2020](https://pubmed.ncbi.nlm.nih.gov/32589958/)). This study aims to predict the GA of pregnant women, so we could provide a non-invasive method for pregnancy dating. 
+The case study dataset (RPLC, positive mode) from our previous published study to predict the gestational age (GA, week) of pregnant women ([Liang et al, Cell, 2020](https://pubmed.ncbi.nlm.nih.gov/32589958/)). This study aims to predict the GA of pregnant women, so we could provide a non-invasive method for pregnancy dating. 
 
 [Paper link is here](https://pubmed.ncbi.nlm.nih.gov/32589958/)
 
 <img src="cell_paper.png" alt="logo" width="100%" height="100%">
+
+---
 
 ## **Download the demo data**
 
@@ -23,21 +27,27 @@ The case study dataset from the our previous published study to predict the gest
 
 The LC-MS data (mzXML format) were deposited to the NIH Common Fund’s National Metabolomics Data Repository (NMDR) website, the Metabolomics Workbench, the project ID is [PR000918](https://doi.org/10.21228/M81H58) (https://doi.org/10.21228/M81H58).
 
+
 ### **Metabolic feature table**
 
 1. [Normal dataset](https://drive.google.com/drive/folders/1Jhhm4t1u5ZJScqJ86RnXFpQ3YMqOfHpa?usp=sharing)
 
 2. [RT shift dataset](https://drive.google.com/drive/folders/1IMTRohq-hLJkZktXoc8pVweV6DuhwXVJ?usp=sharing)
 
+
 ### **Pseudo-MS image datasets**
 
 1. [Normal dataset and RT shift dataset](https://drive.google.com/file/d/10_0DXWGtCoRwtkPmtpsiERNfzeySbuzk/view?usp=sharing)
 
+Download the data and then uncompress it.
 
 <img src="fig1.png" alt="fig1" width="100%" height="100%">
 
+`rplc_pos_224-224_raw` is the normal dataset (pseudo-MS images), and `rplc_pos_224-224_mz_rt_int_shift_x` are the augmented datasets by shift m/z, RT and intensity.
+
 <img src="fig2.png" alt="fig2" width="100%" height="100%">
 
+---
 
 ## **DeepPseduoMSI prediction result**
 
