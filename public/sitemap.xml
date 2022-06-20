@@ -30,9 +30,9 @@
   <url>
     <loc>https://academic-demo.netlify.app/category/demo/</loc><lastmod>2020-12-13T00:00:00+00:00</lastmod></url>
   <url>
-    <loc>https://academic-demo.netlify.app/post/</loc><lastmod>2020-12-13T00:00:00+00:00</lastmod></url>
-  <url>
     <loc>https://academic-demo.netlify.app/tags/</loc><lastmod>2020-12-13T00:00:00+00:00</lastmod></url>
+  <url>
+    <loc>https://academic-demo.netlify.app/post/</loc><lastmod>2020-12-13T00:00:00+00:00</lastmod></url>
   <url>
     <loc>https://academic-demo.netlify.app/post/getting-started/</loc><lastmod>2020-12-13T00:00:00+00:00</lastmod></url>
   <url>
@@ -44,6 +44,8 @@
   <url>
     <loc>https://academic-demo.netlify.app/post/2020-12-01-r-rmarkdown/</loc><lastmod>2020-12-01T21:13:14-05:00</lastmod></url>
   <url>
+    <loc>https://academic-demo.netlify.app/tutorial/2020-12-01-r-rmarkdown/</loc><lastmod>2020-12-01T21:13:14-05:00</lastmod></url>
+  <url>
     <loc>https://academic-demo.netlify.app/tag/plot/</loc><lastmod>2020-12-01T21:13:14-05:00</lastmod></url>
   <url>
     <loc>https://academic-demo.netlify.app/category/r/</loc><lastmod>2020-12-01T21:13:14-05:00</lastmod></url>
@@ -51,6 +53,8 @@
     <loc>https://academic-demo.netlify.app/tag/r-markdown/</loc><lastmod>2020-12-01T21:13:14-05:00</lastmod></url>
   <url>
     <loc>https://academic-demo.netlify.app/tag/regression/</loc><lastmod>2020-12-01T21:13:14-05:00</lastmod></url>
+  <url>
+    <loc>https://academic-demo.netlify.app/tutorial/</loc><lastmod>2020-12-01T21:13:14-05:00</lastmod></url>
   <url>
     <loc>https://academic-demo.netlify.app/post/writing-technical-content/</loc><lastmod>2019-07-12T00:00:00+00:00</lastmod></url>
   <url>

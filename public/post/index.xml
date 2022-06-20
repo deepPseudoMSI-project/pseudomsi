@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts | DeepPseudoMSI</title>
+    <title>Tutorial | DeepPseudoMSI</title>
     <link>https://academic-demo.netlify.app/post/</link>
       <atom:link href="https://academic-demo.netlify.app/post/index.xml" rel="self" type="application/rss+xml" />
-    <description>Posts</description>
+    <description>Tutorial</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 13 Dec 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://academic-demo.netlify.app/media/icon_hue8c3abfcaa6e14904d381680c63303ca_37525_512x512_fill_lanczos_center_3.png</url>
-      <title>Posts</title>
+      <title>Tutorial</title>
       <link>https://academic-demo.netlify.app/post/</link>
     </image>
     
@@ -168,7 +168,7 @@ data.head()
 &lt;p&gt;Demo:&lt;/p&gt;
 
 
-&lt;div id=&#34;chart-632985147&#34; class=&#34;chart&#34;&gt;&lt;/div&gt;
+&lt;div id=&#34;chart-367591428&#34; class=&#34;chart&#34;&gt;&lt;/div&gt;
 &lt;script&gt;
   (function() {
     let a = setInterval( function() {
@@ -178,7 +178,7 @@ data.head()
       clearInterval( a );
 
       Plotly.d3.json(&#34;./line-chart.json&#34;, function(chart) {
-        Plotly.plot(&#39;chart-632985147&#39;, chart.data, chart.layout, {responsive: true});
+        Plotly.plot(&#39;chart-367591428&#39;, chart.data, chart.layout, {responsive: true});
       });
     }, 500 );
   })();

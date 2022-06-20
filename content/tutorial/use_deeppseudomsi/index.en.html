@@ -1,0 +1,403 @@
+---
+title: "DeepPseudoMSI"
+author: "Xiaotao Shen"
+date: 2022-06-20
+categories: ["R"]
+tags: ["R Markdown"]
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="pseudoms-image-converter" class="section level1">
+<h1>PseudoMS image converter</h1>
+<p>The pseudo-MS image converter is designed and developed to convert the LC-MS-based untargeted metabolomics raw data to pseudo-MS images. The functions was written by R and in the R package <code>pseudomsir</code>. So please install this package first.</p>
+<p>You can install <code>pseudomsir</code> from <a href="https://gitlab.com/jaspershen/pseudomsir">GitLab</a></p>
+<p>Open the R and then type below code.</p>
+<pre class="r"><code>if(!require(remotes)){
+install.packages(&quot;remotes&quot;)
+}
+remotes::install_gitlab(&quot;jaspershen/pseudomsir&quot;)</code></pre>
+<p>or <a href="https://github.com/deepPseudoMSI-project/pseudomsir">GitHub</a></p>
+<pre class="r"><code>remotes::install_github(&quot;deepPseudoMSI-project/pseudomsir&quot;)</code></pre>
+</div>
+<div id="convert-mass-spectrometry-data-to-pseudoms-image" class="section level1">
+<h1>Convert mass spectrometry data to pseudoMS image</h1>
+<p>Please convert your mass spectrometry raw data to mzXML or mzML format first using msconvert or R package <a href="https://massconverter.tidymass.org/"><code>massconverter</code></a>.</p>
+<p>Then use the <code>convert_raw_data2pseudoms_image</code> function from <code>pseudomsir</code> package to convert mzMXL or mzML format to images.</p>
+<pre class="r"><code>library(pseudomsir)</code></pre>
+<p>Then put the mzXML data in the <code>demo_data</code> folder.</p>
+<pre class="r"><code>convert_raw_data2pseudoms_image(file_name = &quot;demo_data/QCP11.mzXML&quot;)</code></pre>
+<p>And then one image (png) with the same name of mzXML file will be put in the same folder.</p>
+</div>
+<div id="data-augmentation-for-the-training-dataset" class="section level1">
+<h1>Data augmentation for the training dataset</h1>
+<p>We developed an augmentation strategy to simulate pseudo-MS images for training. We also use the <code>convert_raw_data2pseudoms_image</code> function from <code>pseudomsir</code> package, but we need to set the shift parameters for them. For each image, we could get several shifted images, which could be used for training.</p>
+<pre class="r"><code>convert_raw_data2pseudoms_image(file_name = &quot;demo_data/QCP11.mzXML&quot;,
+                                mz_shift = TRUE, 
+                                rt_shift = TRUE, 
+                                rt_diff = 10, 
+                                int_shift = TRUE, 
+                                int_times = 1.1)</code></pre>
+</div>
+<div id="pseudo-ms-image-predictor" class="section level1">
+<h1>Pseudo-MS image predictor</h1>
+<p>The Pseudo-MS image predictor is written by Python, so please open the python and use the below code for analysis.</p>
+<p>The <code>image_reader.py</code> is used to read the image. This can be found in the github (<a href="https://github.com/jaspershen/deepPseudoMSI/tree/main/code/pseudoMS-image-predictor" class="uri">https://github.com/jaspershen/deepPseudoMSI/tree/main/code/pseudoMS-image-predictor</a>).</p>
+<pre class="python"><code>#### we referenced code from: https://github.com/ignacio-rocco/cnngeometric_pytorch
+
+import tensorflow as tf
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+import scipy.misc
+from skimage import io
+import pandas as pd
+import os
+tf.keras.backend.set_floatx(&#39;float32&#39;)
+
+### the output of each cost function is a tensor of shape TensorShape([batch_size])
+def image_reader(csv_file, image_dir, output_shape = (224,224)):
+    data = pd.read_csv(csv_file)
+    image_names = data.iloc[:,0] 
+    g_stages = data.iloc[:,1]
+    weeks_to_dlvrys = data.iloc[:,2]
+    classes = data.iloc[:,3]
+    
+  
+
+    num_of_images = len(image_names)
+    image = np.zeros([num_of_images,output_shape[0],output_shape[1],3])
+
+    for idx in range(0,num_of_images):
+        image_path = os.path.join(image_dir,image_names[idx])
+        
+        print(image_path)
+        
+        image_2d = cv2.imread(image_path)
+        image_2d = cv2.resize(image_2d, output_shape)
+        image[idx,:,:,:] = image_2d
+        image = image.astype(&#39;float32&#39;)
+        g_stages = g_stages.astype(&#39;float32&#39;)
+        weeks_to_dlvrys = weeks_to_dlvrys.astype(&#39;float32&#39;)
+        
+
+        stages_array = np.zeros(g_stages.shape[0])
+        for i in range(0,g_stages.shape[0]):
+            stages_array[i] = g_stages[i]
+            
+        delivery_array = np.zeros(weeks_to_dlvrys.shape[0])
+        for i in range(0,weeks_to_dlvrys.shape[0]):
+            delivery_array[i] = weeks_to_dlvrys[i]
+        
+        
+        classes_array = np.zeros(classes.shape[0])
+        for i in range(0,classes.shape[0]):
+            classes_array[i] = classes[i]
+        
+        stages_array = np.reshape(stages_array,(g_stages.shape[0],1))
+        delivery_array = np.reshape(delivery_array,(weeks_to_dlvrys.shape[0],1))
+        classes_array = np.reshape(classes_array,(classes.shape[0],1))
+
+    
+    dataset = {&#39;image&#39;: image, &#39;g_stages&#39;: stages_array, &#39;delivery&#39;: delivery_array, &#39;classes&#39;: classes_array }
+    
+    return dataset</code></pre>
+<p>The <code>train.py</code> is used to do the traning (<a href="https://github.com/jaspershen/deepPseudoMSI/tree/main/code/pseudoMS-image-predictor" class="uri">https://github.com/jaspershen/deepPseudoMSI/tree/main/code/pseudoMS-image-predictor</a>).</p>
+<pre class="python"><code>from __future__ import print_function
+
+import os
+import sys
+from argparse import ArgumentParser
+from time import time
+
+import pandas as pd
+import tensorflow as tf
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+import scipy.misc
+from tensorflow.keras.optimizers import Adam
+
+### import self-defined functions
+from model import *
+from image_reader import *
+from loss import *
+
+
+tf.keras.backend.set_floatx(&#39;float32&#39;)
+
+def build_parser():
+    parser = ArgumentParser()
+    
+    # Paths
+    parser.add_argument(&#39;--image-dir&#39;, type=str, default=&#39;../denmark_rplc_pos_224_224/&#39;, help=&#39;path to foler of training images&#39;)
+    parser.add_argument(&#39;--train-file&#39;, type=str, default=&#39;../denmark_rplc_pos_224_224/train_all_shifts.csv&#39;, help=&#39;path to csv file of training/testing examples&#39;)
+    parser.add_argument(&#39;--trained-model-dir&#39;, type=str, default=&#39;../trained_models/&#39;, help=&#39;path to trained models folder&#39;)
+    parser.add_argument(&#39;--trained-model-fn&#39;, type=str, default=&#39;model_224x224_fold5&#39;, help=&#39;trained model filename&#39;)
+    parser.add_argument(&#39;--result-name&#39;, type=str, default=&#39;../trained_models/results_224x224_fold5.csv&#39;, help=&#39;directory to store registration results&#39;)
+    # Optimization parameters 
+    parser.add_argument(&#39;--lr&#39;, type=float, default=0.0001, help=&#39;learning rate&#39;)
+    parser.add_argument(&#39;--num-epochs&#39;, type=int, default=100, help=&#39;number of training epochs&#39;)
+    parser.add_argument(&#39;--batch-size&#39;, type=int, default=8, help=&#39;training batch size&#39;)
+    parser.add_argument(&#39;--image-size&#39;, type=int, default=224, help=&#39;size of image used for training and testing&#39;)
+    parser.add_argument(&#39;--gpu-id&#39;, type=int, default=0, help=&#39;training batch size&#39;)
+    # Model parameters
+    parser.add_argument(&#39;--feature-cnn&#39;, type=str, default=&#39;vgg16&#39;, help=&#39;Feature extraction network: vgg16/resnet101&#39;)
+    
+    return parser
+   
+   
+def main():
+
+    parser = build_parser()
+    args = parser.parse_args()
+
+    devices = tf.config.experimental.list_physical_devices(&#39;GPU&#39;)
+    for device in devices:
+        tf.config.experimental.set_memory_growth(device, True)
+    tf.config.experimental.set_visible_devices(devices[args.gpu_id], &#39;GPU&#39;)
+    
+    
+    train_losses = np.zeros(args.num_epochs)
+    validation_losses = np.zeros(args.num_epochs)
+    data = pd.read_csv(args.train_file)
+    
+    dataset = image_reader(args.train_file, args.image_dir, output_shape = (args.image_size,args.image_size))
+
+    image = dataset[&#39;image&#39;]
+    g_stages = dataset[&#39;g_stages&#39;]
+    delivery = dataset[&#39;delivery&#39;]
+    classes = dataset[&#39;classes&#39;]
+
+    
+    index_train = np.where(classes.reshape(classes.shape[0],)!=5)
+    index_val = np.where(classes.reshape(classes.shape[0],)==5)
+
+    imgae_train = image[index_train,:,:,:]
+    g_stages_train = g_stages[index_train]
+    image_test = image[index_val,:,:,:]
+    g_stages_test = g_stages[index_val]
+    
+   
+    num_of_train_images = g_stages_train.shape[0]
+    num_of_validation_images = g_stages_test.shape[0]
+    
+    imgae_train = imgae_train.reshape((num_of_train_images,image.shape[1],image.shape[2],image.shape[3]))
+    image_test = image_test.reshape((num_of_validation_images,image.shape[1],image.shape[2],image.shape[3]))
+    
+    
+    #num_of_train_images = 2524
+    #num_of_validation_images = 3000 - 2524
+    #imgae_train = image[0:num_of_train_images,:,:,:]
+    #g_stages_train = g_stages[0:num_of_train_images]
+    #image_test = image[num_of_train_images:num_of_train_images + num_of_validation_images,:,:,:]
+    #g_stages_test = g_stages[num_of_train_images:num_of_train_images + num_of_validation_images]
+    
+
+    
+    print(imgae_train.shape)
+    print(g_stages_train.shape)
+    print(image_test.shape)
+    print(g_stages_test.shape)
+    
+    input_shape = image.shape[1:4]
+    model = reg_net(input_shape,feature_cnn=args.feature_cnn)
+    model.summary()
+    
+    optimizer = tf.keras.optimizers.Adam(learning_rate=args.lr)
+
+    for epoch in range(1,args.num_epochs+1):
+        optimizer = tf.keras.optimizers.Adam(learning_rate=np.power(0.98,epoch)*args.lr)
+        num_of_batches = int(num_of_train_images/args.batch_size)
+        s = 0
+        for idx in range(0,num_of_batches):
+            
+            batch_idx = np.random.randint(num_of_train_images, size=args.batch_size)
+            
+            image_batch = imgae_train[batch_idx, :]
+            stage_batch = g_stages_train[batch_idx]
+
+            with tf.GradientTape() as tape:
+                    
+                g_stage_predicted = model(image_batch)
+                    
+                loss = losses(stage_batch,g_stage_predicted)
+
+            gradients = tape.gradient(loss, model.trainable_variables)
+            optimizer.apply_gradients(zip(gradients,model.trainable_variables))
+                
+                ### sum up training loss
+            s = s + loss.numpy()
+            
+            
+        ### compute validationing loss
+        loss_validation = 0
+        g_stage_validation_predicted_array = np.zeros((num_of_validation_images,1))
+        
+        for i in range(0,num_of_validation_images):
+            
+            test_image = image_test[i,:,:,:]
+            test_image = test_image.reshape((1,test_image.shape[0],test_image.shape[1],test_image.shape[2]))
+            test_stage = g_stages_test[i]
+        
+            g_stage_validation_predicted = model(test_image)
+        
+    
+            loss_validation = losses(test_stage,g_stage_validation_predicted) + loss_validation
+            
+            g_stage_validation_predicted_array[i] = g_stage_validation_predicted
+            
+        loss_validation = loss_validation/num_of_validation_images
+        loss_validation = np.sqrt(loss_validation)
+        
+            
+        print(&quot;epoch= &quot; + str(epoch) + &quot;,  train loss = &quot; + str(format(np.sqrt(s/num_of_batches), &#39;.3f&#39;)) +
+        &quot;,   validation loss = &quot; + str(format(loss_validation, &#39;.3f&#39;)))
+            
+        train_losses[epoch-1] = s/num_of_batches
+        
+        validation_losses[epoch-1] = loss_validation
+            
+
+    # save model for each image resolution
+    model.save(args.trained_model_dir + args.trained_model_fn + &#39;.h5&#39;)
+    
+    print(&#39;done!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!&#39;)
+    array = np.empty((args.num_epochs + 10,3), dtype=&#39;U25&#39;)
+    
+    array[0,0] = &quot;epoch&quot;
+    array[0,1] = &quot;train_loss&quot;
+    array[0,2] = &quot;validation_loss&quot;
+    
+    for j in range(0,args.num_epochs):
+        array[1 + j , 0] = str(j+1)
+        array[1 + j , 1] = str(train_losses[j])
+        array[1 + j , 2] = str(validation_losses[j])
+    np.savetxt(args.result_name, array, delimiter=&quot;,&quot;, fmt=&#39;%s&#39;)
+    
+
+    
+    np.savetxt(&#39;../trained_models/predicted_224x224_fold5.csv&#39;, np.concatenate((g_stages_test,g_stage_validation_predicted_array), axis=1), delimiter=&quot;,&quot;, fmt=&#39;%s&#39;)
+    
+    
+if __name__ == &#39;__main__&#39;:
+    main()
+</code></pre>
+<p>The <code>model.py</code> is used to set the deep learning method.</p>
+<pre class="python"><code>import tensorflow as tf
+import tensorflow.keras.layers as KL
+from tensorflow.keras.layers import *
+from tensorflow.keras.models import Model, load_model
+from tensorflow.keras import regularizers
+tf.keras.backend.set_floatx(&#39;float32&#39;)
+ 
+def reg_net(input_shape, feature_cnn=&#39;vgg16&#39;):
+    x_in = Input(input_shape)
+    
+    if feature_cnn == &#39;vgg16&#39; :
+        model = tf.keras.Sequential()
+        vgg16 = tf.keras.applications.VGG16(include_top=False, weights = &#39;imagenet&#39;, input_shape = input_shape)
+            ### cropped at forth pooling layer, replace maximum pooling with global average pooling
+        for i in range(0,13):
+            vgg16.layers[i].trainable = False
+            model.add(vgg16.layers[i])
+        for i in range(13,14):
+            model.add(vgg16.get_layer(index=i))
+            #model.add(Conv2D(filters=512, kernel_size=(3,3), padding=&quot;same&quot;, activation=&quot;relu&quot;, kernel_regularizer=regularizers.l2(0.001)))
+            model.add(tf.keras.layers.Dropout(0.5))
+        model.add(tf.keras.layers.GlobalAveragePooling2D())
+        
+        x = model(x_in)
+        
+    size = x.shape[1]
+    factor = (size)** (1. / 3)
+        
+    fcl_model =  tf.keras.Sequential()
+    fcl_model.add(Dense(int(size/factor), input_shape=(size,), activation=tf.nn.relu,kernel_regularizer=regularizers.l2(1)))
+    fcl_model.add(Dense(int(size/(factor*factor)), activation=tf.nn.relu, kernel_regularizer=regularizers.l2(1)))
+    #fcl_model.add(Dense(int(size/factor), input_shape=(size,), activation=tf.nn.relu))
+    #fcl_model.add(Dense(int(size/(factor*factor)), activation=tf.nn.relu))
+    fcl_model.add(Dense(1))    
+    
+    y_out = fcl_model(x)
+  
+    
+    return Model(inputs = x_in, outputs = y_out)</code></pre>
+<p>And the <code>test.py</code> is used to the test.</p>
+<pre class="python"><code>from __future__ import print_function
+
+import os
+import sys
+from argparse import ArgumentParser
+from time import time
+
+import pandas as pd
+import tensorflow as tf
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+import scipy.misc
+from tensorflow.keras.optimizers import Adam
+import glob
+
+### import self-defined functions
+from model import *
+from image_reader import *
+from loss import *
+
+tf.keras.backend.set_floatx(&#39;float32&#39;)
+
+
+def build_parser():
+    parser = ArgumentParser()
+    
+    # Paths
+    parser.add_argument(&#39;--image-dir&#39;, type=str, default=&#39;../validation200_224_224/&#39;, help=&#39;path to foler of training images&#39;)
+    parser.add_argument(&#39;--trained-model-dir&#39;, type=str, default=&#39;../trained_models/&#39;, help=&#39;path to trained models folder&#39;)
+    parser.add_argument(&#39;--trained-model-fn&#39;, type=str, default=&#39;model_224x224_fold5&#39;, help=&#39;trained model filename&#39;)
+    parser.add_argument(&#39;--result-dir&#39;, type=str, default=&#39;../results/&#39;, help=&#39;directory to store registration results&#39;)
+    # Optimization parameters 
+    parser.add_argument(&#39;--gpu-id&#39;, type=int, default=0, help=&#39;which GPU to use&#39;)
+    # Model parameters
+    parser.add_argument(&#39;--feature-cnn&#39;, type=str, default=&#39;vgg16&#39;, help=&#39;Feature extraction network: vgg16/resnet101&#39;)
+    parser.add_argument(&#39;--image-size&#39;, type=int, default=224, help=&#39;size of image used for training and testing&#39;)
+    
+    return parser
+   
+   
+def main():
+
+    parser = build_parser()
+    args = parser.parse_args()
+    
+    devices = tf.config.experimental.list_physical_devices(&#39;GPU&#39;)
+    print(devices)
+    for device in devices:
+        tf.config.experimental.set_memory_growth(device, True)
+    tf.config.experimental.set_visible_devices(devices[args.gpu_id], &#39;GPU&#39;)
+    
+    image_names = glob.glob(args.image_dir + &#39;*.png&#39;)
+    num_of_test_images = len(image_names)
+    
+    model = tf.keras.models.load_model(args.trained_model_dir + args.trained_model_fn + &#39;.h5&#39;)
+        
+    g_stage_test_predicted_array = np.zeros((num_of_test_images,1))
+        
+    for i in range(0,num_of_test_images):
+        test_image = cv2.imread(image_names[i])
+        test_image = test_image.astype(&#39;float32&#39;)
+        test_image = test_image.reshape((1,test_image.shape[0],test_image.shape[1],test_image.shape[2]))
+        g_stage_test_predicted_array[i] = model(test_image)
+
+    print(&#39;done!&#39;)
+    
+    image_names = np.array(image_names)
+    image_names = image_names.reshape((image_names.shape[0],1))
+    
+    np.savetxt(args.result_dir + &#39;external_validation_dataset2_fold5.csv&#39;, np.concatenate((image_names,g_stage_test_predicted_array),axis=1), delimiter=&quot;,&quot; ,fmt=&#39;%s&#39;)
+    
+if __name__ == &#39;__main__&#39;:
+    main()
+</code></pre>
+</div>
