@@ -16,6 +16,9 @@ main:
   - name: Team
     url: '#member'
     weight: 40
+  - name: Tools
+    url: '#projects'
+    weight: 45
   - name: Contact
     url: '#contact'
     weight: 50

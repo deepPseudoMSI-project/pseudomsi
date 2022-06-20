@@ -7,11 +7,11 @@ widget: portfolio
 headless: true
 
 # Order that this section appears on the page.
-weight: 65
+weight: 45
 
-active: false
+active: true
 
-title: Projects
+title: Tools
 subtitle: ''
 
 content:
@@ -29,8 +29,10 @@ content:
   filter_button:
   - name: All
     tag: '*'
-  - name: Deep Learning
-    tag: Deep Learning
+  - name: R
+    tag: R
+  - name: Python
+    tag: Python
   - name: Other
     tag: Demo
 
