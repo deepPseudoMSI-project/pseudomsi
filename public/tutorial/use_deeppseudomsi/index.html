@@ -1,0 +1,1511 @@
+<!DOCTYPE html><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.4.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="PseudoMS image converter The pseudo-MS image converter is designed and developed to convert the LC-MS-based untargeted metabolomics raw data to pseudo-MS images. The functions was written by R and in the R package pseudomsir." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://academic-demo.netlify.app/tutorial/use_deeppseudomsi/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.css" integrity="" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.512574799414e7d36471486881070b0f.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hue8c3abfcaa6e14904d381680c63303ca_37525_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hue8c3abfcaa6e14904d381680c63303ca_37525_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://academic-demo.netlify.app/tutorial/use_deeppseudomsi/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="DeepPseudoMSI" />
+  <meta property="og:url" content="https://academic-demo.netlify.app/tutorial/use_deeppseudomsi/" />
+  <meta property="og:title" content="DeepPseudoMSI" />
+  <meta property="og:description" content="PseudoMS image converter The pseudo-MS image converter is designed and developed to convert the LC-MS-based untargeted metabolomics raw data to pseudo-MS images. The functions was written by R and in the R package pseudomsir." /><meta property="og:image" content="https://academic-demo.netlify.app/media/icon_hue8c3abfcaa6e14904d381680c63303ca_37525_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://academic-demo.netlify.app/media/icon_hue8c3abfcaa6e14904d381680c63303ca_37525_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2022-06-20T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2022-06-20T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>DeepPseudoMSI</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="4a67ec600c396e8446b47d91113d918f" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.133800c88f3b5bb934932231fd94fed7.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="header--fixed">
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">DeepPseudoMSI</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">DeepPseudoMSI</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#demo"><span>About</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#case_study"><span>Case study</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#tutorial"><span>Tutorial</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#member"><span>Team</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>DeepPseudoMSI</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jun 20, 2022
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/r/">R</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="https://academic-demo.netlify.app/tutorial/use_deeppseudomsi/index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="pseudoms-image-converter" class="section level1">
+<h1>PseudoMS image converter</h1>
+<p>The pseudo-MS image converter is designed and developed to convert the LC-MS-based untargeted metabolomics raw data to pseudo-MS images. The functions was written by R and in the R package <code>pseudomsir</code>. So please install this package first.</p>
+<p>You can install <code>pseudomsir</code> from <a href="https://gitlab.com/jaspershen/pseudomsir">GitLab</a></p>
+<p>Open the R and then type below code.</p>
+<pre class="r"><code>if(!require(remotes)){
+install.packages(&quot;remotes&quot;)
+}
+remotes::install_gitlab(&quot;jaspershen/pseudomsir&quot;)</code></pre>
+<p>or <a href="https://github.com/deepPseudoMSI-project/pseudomsir">GitHub</a></p>
+<pre class="r"><code>remotes::install_github(&quot;deepPseudoMSI-project/pseudomsir&quot;)</code></pre>
+</div>
+<div id="convert-mass-spectrometry-data-to-pseudoms-image" class="section level1">
+<h1>Convert mass spectrometry data to pseudoMS image</h1>
+<p>Please convert your mass spectrometry raw data to mzXML or mzML format first using msconvert or R package <a href="https://massconverter.tidymass.org/"><code>massconverter</code></a>.</p>
+<p>Then use the <code>convert_raw_data2pseudoms_image</code> function from <code>pseudomsir</code> package to convert mzMXL or mzML format to images.</p>
+<pre class="r"><code>library(pseudomsir)</code></pre>
+<p>Then put the mzXML data in the <code>demo_data</code> folder.</p>
+<pre class="r"><code>convert_raw_data2pseudoms_image(file_name = &quot;demo_data/QCP11.mzXML&quot;)</code></pre>
+<p>And then one image (png) with the same name of mzXML file will be put in the same folder.</p>
+</div>
+<div id="data-augmentation-for-the-training-dataset" class="section level1">
+<h1>Data augmentation for the training dataset</h1>
+<p>We developed an augmentation strategy to simulate pseudo-MS images for training. We also use the <code>convert_raw_data2pseudoms_image</code> function from <code>pseudomsir</code> package, but we need to set the shift parameters for them. For each image, we could get several shifted images, which could be used for training.</p>
+<pre class="r"><code>convert_raw_data2pseudoms_image(file_name = &quot;demo_data/QCP11.mzXML&quot;,
+                                mz_shift = TRUE, 
+                                rt_shift = TRUE, 
+                                rt_diff = 10, 
+                                int_shift = TRUE, 
+                                int_times = 1.1)</code></pre>
+</div>
+<div id="pseudo-ms-image-predictor" class="section level1">
+<h1>Pseudo-MS image predictor</h1>
+<p>The Pseudo-MS image predictor is written by Python, so please open the python and use the below code for analysis.</p>
+<p>The <code>image_reader.py</code> is used to read the image. This can be found in the github (<a href="https://github.com/jaspershen/deepPseudoMSI/tree/main/code/pseudoMS-image-predictor" class="uri">https://github.com/jaspershen/deepPseudoMSI/tree/main/code/pseudoMS-image-predictor</a>).</p>
+<pre class="python"><code>#### we referenced code from: https://github.com/ignacio-rocco/cnngeometric_pytorch
+
+import tensorflow as tf
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+import scipy.misc
+from skimage import io
+import pandas as pd
+import os
+tf.keras.backend.set_floatx(&#39;float32&#39;)
+
+### the output of each cost function is a tensor of shape TensorShape([batch_size])
+def image_reader(csv_file, image_dir, output_shape = (224,224)):
+    data = pd.read_csv(csv_file)
+    image_names = data.iloc[:,0] 
+    g_stages = data.iloc[:,1]
+    weeks_to_dlvrys = data.iloc[:,2]
+    classes = data.iloc[:,3]
+    
+  
+
+    num_of_images = len(image_names)
+    image = np.zeros([num_of_images,output_shape[0],output_shape[1],3])
+
+    for idx in range(0,num_of_images):
+        image_path = os.path.join(image_dir,image_names[idx])
+        
+        print(image_path)
+        
+        image_2d = cv2.imread(image_path)
+        image_2d = cv2.resize(image_2d, output_shape)
+        image[idx,:,:,:] = image_2d
+        image = image.astype(&#39;float32&#39;)
+        g_stages = g_stages.astype(&#39;float32&#39;)
+        weeks_to_dlvrys = weeks_to_dlvrys.astype(&#39;float32&#39;)
+        
+
+        stages_array = np.zeros(g_stages.shape[0])
+        for i in range(0,g_stages.shape[0]):
+            stages_array[i] = g_stages[i]
+            
+        delivery_array = np.zeros(weeks_to_dlvrys.shape[0])
+        for i in range(0,weeks_to_dlvrys.shape[0]):
+            delivery_array[i] = weeks_to_dlvrys[i]
+        
+        
+        classes_array = np.zeros(classes.shape[0])
+        for i in range(0,classes.shape[0]):
+            classes_array[i] = classes[i]
+        
+        stages_array = np.reshape(stages_array,(g_stages.shape[0],1))
+        delivery_array = np.reshape(delivery_array,(weeks_to_dlvrys.shape[0],1))
+        classes_array = np.reshape(classes_array,(classes.shape[0],1))
+
+    
+    dataset = {&#39;image&#39;: image, &#39;g_stages&#39;: stages_array, &#39;delivery&#39;: delivery_array, &#39;classes&#39;: classes_array }
+    
+    return dataset</code></pre>
+<p>The <code>train.py</code> is used to do the traning (<a href="https://github.com/jaspershen/deepPseudoMSI/tree/main/code/pseudoMS-image-predictor" class="uri">https://github.com/jaspershen/deepPseudoMSI/tree/main/code/pseudoMS-image-predictor</a>).</p>
+<pre class="python"><code>from __future__ import print_function
+
+import os
+import sys
+from argparse import ArgumentParser
+from time import time
+
+import pandas as pd
+import tensorflow as tf
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+import scipy.misc
+from tensorflow.keras.optimizers import Adam
+
+### import self-defined functions
+from model import *
+from image_reader import *
+from loss import *
+
+
+tf.keras.backend.set_floatx(&#39;float32&#39;)
+
+def build_parser():
+    parser = ArgumentParser()
+    
+    # Paths
+    parser.add_argument(&#39;--image-dir&#39;, type=str, default=&#39;../denmark_rplc_pos_224_224/&#39;, help=&#39;path to foler of training images&#39;)
+    parser.add_argument(&#39;--train-file&#39;, type=str, default=&#39;../denmark_rplc_pos_224_224/train_all_shifts.csv&#39;, help=&#39;path to csv file of training/testing examples&#39;)
+    parser.add_argument(&#39;--trained-model-dir&#39;, type=str, default=&#39;../trained_models/&#39;, help=&#39;path to trained models folder&#39;)
+    parser.add_argument(&#39;--trained-model-fn&#39;, type=str, default=&#39;model_224x224_fold5&#39;, help=&#39;trained model filename&#39;)
+    parser.add_argument(&#39;--result-name&#39;, type=str, default=&#39;../trained_models/results_224x224_fold5.csv&#39;, help=&#39;directory to store registration results&#39;)
+    # Optimization parameters 
+    parser.add_argument(&#39;--lr&#39;, type=float, default=0.0001, help=&#39;learning rate&#39;)
+    parser.add_argument(&#39;--num-epochs&#39;, type=int, default=100, help=&#39;number of training epochs&#39;)
+    parser.add_argument(&#39;--batch-size&#39;, type=int, default=8, help=&#39;training batch size&#39;)
+    parser.add_argument(&#39;--image-size&#39;, type=int, default=224, help=&#39;size of image used for training and testing&#39;)
+    parser.add_argument(&#39;--gpu-id&#39;, type=int, default=0, help=&#39;training batch size&#39;)
+    # Model parameters
+    parser.add_argument(&#39;--feature-cnn&#39;, type=str, default=&#39;vgg16&#39;, help=&#39;Feature extraction network: vgg16/resnet101&#39;)
+    
+    return parser
+   
+   
+def main():
+
+    parser = build_parser()
+    args = parser.parse_args()
+
+    devices = tf.config.experimental.list_physical_devices(&#39;GPU&#39;)
+    for device in devices:
+        tf.config.experimental.set_memory_growth(device, True)
+    tf.config.experimental.set_visible_devices(devices[args.gpu_id], &#39;GPU&#39;)
+    
+    
+    train_losses = np.zeros(args.num_epochs)
+    validation_losses = np.zeros(args.num_epochs)
+    data = pd.read_csv(args.train_file)
+    
+    dataset = image_reader(args.train_file, args.image_dir, output_shape = (args.image_size,args.image_size))
+
+    image = dataset[&#39;image&#39;]
+    g_stages = dataset[&#39;g_stages&#39;]
+    delivery = dataset[&#39;delivery&#39;]
+    classes = dataset[&#39;classes&#39;]
+
+    
+    index_train = np.where(classes.reshape(classes.shape[0],)!=5)
+    index_val = np.where(classes.reshape(classes.shape[0],)==5)
+
+    imgae_train = image[index_train,:,:,:]
+    g_stages_train = g_stages[index_train]
+    image_test = image[index_val,:,:,:]
+    g_stages_test = g_stages[index_val]
+    
+   
+    num_of_train_images = g_stages_train.shape[0]
+    num_of_validation_images = g_stages_test.shape[0]
+    
+    imgae_train = imgae_train.reshape((num_of_train_images,image.shape[1],image.shape[2],image.shape[3]))
+    image_test = image_test.reshape((num_of_validation_images,image.shape[1],image.shape[2],image.shape[3]))
+    
+    
+    #num_of_train_images = 2524
+    #num_of_validation_images = 3000 - 2524
+    #imgae_train = image[0:num_of_train_images,:,:,:]
+    #g_stages_train = g_stages[0:num_of_train_images]
+    #image_test = image[num_of_train_images:num_of_train_images + num_of_validation_images,:,:,:]
+    #g_stages_test = g_stages[num_of_train_images:num_of_train_images + num_of_validation_images]
+    
+
+    
+    print(imgae_train.shape)
+    print(g_stages_train.shape)
+    print(image_test.shape)
+    print(g_stages_test.shape)
+    
+    input_shape = image.shape[1:4]
+    model = reg_net(input_shape,feature_cnn=args.feature_cnn)
+    model.summary()
+    
+    optimizer = tf.keras.optimizers.Adam(learning_rate=args.lr)
+
+    for epoch in range(1,args.num_epochs+1):
+        optimizer = tf.keras.optimizers.Adam(learning_rate=np.power(0.98,epoch)*args.lr)
+        num_of_batches = int(num_of_train_images/args.batch_size)
+        s = 0
+        for idx in range(0,num_of_batches):
+            
+            batch_idx = np.random.randint(num_of_train_images, size=args.batch_size)
+            
+            image_batch = imgae_train[batch_idx, :]
+            stage_batch = g_stages_train[batch_idx]
+
+            with tf.GradientTape() as tape:
+                    
+                g_stage_predicted = model(image_batch)
+                    
+                loss = losses(stage_batch,g_stage_predicted)
+
+            gradients = tape.gradient(loss, model.trainable_variables)
+            optimizer.apply_gradients(zip(gradients,model.trainable_variables))
+                
+                ### sum up training loss
+            s = s + loss.numpy()
+            
+            
+        ### compute validationing loss
+        loss_validation = 0
+        g_stage_validation_predicted_array = np.zeros((num_of_validation_images,1))
+        
+        for i in range(0,num_of_validation_images):
+            
+            test_image = image_test[i,:,:,:]
+            test_image = test_image.reshape((1,test_image.shape[0],test_image.shape[1],test_image.shape[2]))
+            test_stage = g_stages_test[i]
+        
+            g_stage_validation_predicted = model(test_image)
+        
+    
+            loss_validation = losses(test_stage,g_stage_validation_predicted) + loss_validation
+            
+            g_stage_validation_predicted_array[i] = g_stage_validation_predicted
+            
+        loss_validation = loss_validation/num_of_validation_images
+        loss_validation = np.sqrt(loss_validation)
+        
+            
+        print(&quot;epoch= &quot; + str(epoch) + &quot;,  train loss = &quot; + str(format(np.sqrt(s/num_of_batches), &#39;.3f&#39;)) +
+        &quot;,   validation loss = &quot; + str(format(loss_validation, &#39;.3f&#39;)))
+            
+        train_losses[epoch-1] = s/num_of_batches
+        
+        validation_losses[epoch-1] = loss_validation
+            
+
+    # save model for each image resolution
+    model.save(args.trained_model_dir + args.trained_model_fn + &#39;.h5&#39;)
+    
+    print(&#39;done!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!&#39;)
+    array = np.empty((args.num_epochs + 10,3), dtype=&#39;U25&#39;)
+    
+    array[0,0] = &quot;epoch&quot;
+    array[0,1] = &quot;train_loss&quot;
+    array[0,2] = &quot;validation_loss&quot;
+    
+    for j in range(0,args.num_epochs):
+        array[1 + j , 0] = str(j+1)
+        array[1 + j , 1] = str(train_losses[j])
+        array[1 + j , 2] = str(validation_losses[j])
+    np.savetxt(args.result_name, array, delimiter=&quot;,&quot;, fmt=&#39;%s&#39;)
+    
+
+    
+    np.savetxt(&#39;../trained_models/predicted_224x224_fold5.csv&#39;, np.concatenate((g_stages_test,g_stage_validation_predicted_array), axis=1), delimiter=&quot;,&quot;, fmt=&#39;%s&#39;)
+    
+    
+if __name__ == &#39;__main__&#39;:
+    main()
+</code></pre>
+<p>The <code>model.py</code> is used to set the deep learning method.</p>
+<pre class="python"><code>import tensorflow as tf
+import tensorflow.keras.layers as KL
+from tensorflow.keras.layers import *
+from tensorflow.keras.models import Model, load_model
+from tensorflow.keras import regularizers
+tf.keras.backend.set_floatx(&#39;float32&#39;)
+ 
+def reg_net(input_shape, feature_cnn=&#39;vgg16&#39;):
+    x_in = Input(input_shape)
+    
+    if feature_cnn == &#39;vgg16&#39; :
+        model = tf.keras.Sequential()
+        vgg16 = tf.keras.applications.VGG16(include_top=False, weights = &#39;imagenet&#39;, input_shape = input_shape)
+            ### cropped at forth pooling layer, replace maximum pooling with global average pooling
+        for i in range(0,13):
+            vgg16.layers[i].trainable = False
+            model.add(vgg16.layers[i])
+        for i in range(13,14):
+            model.add(vgg16.get_layer(index=i))
+            #model.add(Conv2D(filters=512, kernel_size=(3,3), padding=&quot;same&quot;, activation=&quot;relu&quot;, kernel_regularizer=regularizers.l2(0.001)))
+            model.add(tf.keras.layers.Dropout(0.5))
+        model.add(tf.keras.layers.GlobalAveragePooling2D())
+        
+        x = model(x_in)
+        
+    size = x.shape[1]
+    factor = (size)** (1. / 3)
+        
+    fcl_model =  tf.keras.Sequential()
+    fcl_model.add(Dense(int(size/factor), input_shape=(size,), activation=tf.nn.relu,kernel_regularizer=regularizers.l2(1)))
+    fcl_model.add(Dense(int(size/(factor*factor)), activation=tf.nn.relu, kernel_regularizer=regularizers.l2(1)))
+    #fcl_model.add(Dense(int(size/factor), input_shape=(size,), activation=tf.nn.relu))
+    #fcl_model.add(Dense(int(size/(factor*factor)), activation=tf.nn.relu))
+    fcl_model.add(Dense(1))    
+    
+    y_out = fcl_model(x)
+  
+    
+    return Model(inputs = x_in, outputs = y_out)</code></pre>
+<p>And the <code>test.py</code> is used to the test.</p>
+<pre class="python"><code>from __future__ import print_function
+
+import os
+import sys
+from argparse import ArgumentParser
+from time import time
+
+import pandas as pd
+import tensorflow as tf
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+import scipy.misc
+from tensorflow.keras.optimizers import Adam
+import glob
+
+### import self-defined functions
+from model import *
+from image_reader import *
+from loss import *
+
+tf.keras.backend.set_floatx(&#39;float32&#39;)
+
+
+def build_parser():
+    parser = ArgumentParser()
+    
+    # Paths
+    parser.add_argument(&#39;--image-dir&#39;, type=str, default=&#39;../validation200_224_224/&#39;, help=&#39;path to foler of training images&#39;)
+    parser.add_argument(&#39;--trained-model-dir&#39;, type=str, default=&#39;../trained_models/&#39;, help=&#39;path to trained models folder&#39;)
+    parser.add_argument(&#39;--trained-model-fn&#39;, type=str, default=&#39;model_224x224_fold5&#39;, help=&#39;trained model filename&#39;)
+    parser.add_argument(&#39;--result-dir&#39;, type=str, default=&#39;../results/&#39;, help=&#39;directory to store registration results&#39;)
+    # Optimization parameters 
+    parser.add_argument(&#39;--gpu-id&#39;, type=int, default=0, help=&#39;which GPU to use&#39;)
+    # Model parameters
+    parser.add_argument(&#39;--feature-cnn&#39;, type=str, default=&#39;vgg16&#39;, help=&#39;Feature extraction network: vgg16/resnet101&#39;)
+    parser.add_argument(&#39;--image-size&#39;, type=int, default=224, help=&#39;size of image used for training and testing&#39;)
+    
+    return parser
+   
+   
+def main():
+
+    parser = build_parser()
+    args = parser.parse_args()
+    
+    devices = tf.config.experimental.list_physical_devices(&#39;GPU&#39;)
+    print(devices)
+    for device in devices:
+        tf.config.experimental.set_memory_growth(device, True)
+    tf.config.experimental.set_visible_devices(devices[args.gpu_id], &#39;GPU&#39;)
+    
+    image_names = glob.glob(args.image_dir + &#39;*.png&#39;)
+    num_of_test_images = len(image_names)
+    
+    model = tf.keras.models.load_model(args.trained_model_dir + args.trained_model_fn + &#39;.h5&#39;)
+        
+    g_stage_test_predicted_array = np.zeros((num_of_test_images,1))
+        
+    for i in range(0,num_of_test_images):
+        test_image = cv2.imread(image_names[i])
+        test_image = test_image.astype(&#39;float32&#39;)
+        test_image = test_image.reshape((1,test_image.shape[0],test_image.shape[1],test_image.shape[2]))
+        g_stage_test_predicted_array[i] = model(test_image)
+
+    print(&#39;done!&#39;)
+    
+    image_names = np.array(image_names)
+    image_names = image_names.reshape((image_names.shape[0],1))
+    
+    np.savetxt(args.result_dir + &#39;external_validation_dataset2_fold5.csv&#39;, np.concatenate((image_names,g_stage_test_predicted_array),axis=1), delimiter=&quot;,&quot; ,fmt=&#39;%s&#39;)
+    
+if __name__ == &#39;__main__&#39;:
+    main()
+</code></pre>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/r-markdown/">R Markdown</a>
+  
+</div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://academic-demo.netlify.app/tutorial/use_deeppseudomsi/&amp;text=DeepPseudoMSI" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://academic-demo.netlify.app/tutorial/use_deeppseudomsi/&amp;t=DeepPseudoMSI" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=DeepPseudoMSI&amp;body=https://academic-demo.netlify.app/tutorial/use_deeppseudomsi/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://academic-demo.netlify.app/tutorial/use_deeppseudomsi/&amp;title=DeepPseudoMSI" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=DeepPseudoMSI%20https://academic-demo.netlify.app/tutorial/use_deeppseudomsi/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://academic-demo.netlify.app/tutorial/use_deeppseudomsi/&amp;title=DeepPseudoMSI" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://academic-demo.netlify.app/"><img class="avatar mr-3 avatar-circle" src="/author/avatar_hu3c64bd0f98018e2d901b7c60447ac42e_1387900_270x270_fill_q75_lanczos_center.jpg" alt=""></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://academic-demo.netlify.app/"></a></h5>
+      
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://casba.netlify.com/files/casba_wechat.jpeg" target="_blank" rel="noopener">
+        <i class="fab fa-weixin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Support by <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a>.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.b73dfaac3b6499dc997741748a7c3fe2.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdn.jsdelivr.net/gh/desandro/imagesloaded@v4.1.4/imagesloaded.pkgd.min.js" integrity="sha512-S5PZ9GxJZO16tT9r3WJp/Safn31eu8uWrzglMahDT4dsmgqWonRY9grk3j+3tfuPr9WJNsfooOR7Gi7HL5W2jw==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/metafizzy/isotope@v3.0.6/dist/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js" integrity="sha512-Ypjm0o7jOxAd4hpdoppSEN0TQOC19UtPAqD+4s5AlXmUvbmmS/YMxYqAqarQYyxTnB6/rqip9qcxlNB/3U9Wdg==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/r.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.js" integrity="" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+
+    
+    
+    
+    <script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+    
+    
+      <script src="/js/wowchemy-headroom.1cb9e2fc8399acee94eab837265b73bf.js" type="module"></script>
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.247fd8f54253895301106e3006f53f38.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>
